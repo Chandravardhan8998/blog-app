@@ -34,7 +34,7 @@ export default function Posts({ userId = null, title = "Posts" }) {
     );
   }
   return (
-    <div>
+    <div className="m-4">
       <h1>{title}</h1>
       <table className="px-2">
         <PostHeader />

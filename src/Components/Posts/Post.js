@@ -9,7 +9,7 @@ export default function Post({ id, title, description, onDelete, onEdit }) {
     <Fragment>
       <TR color="#eee">
         <TD>
-          <Link to={`/post?id=${+id}`}>{id}</Link>
+          <Link to={`/user/post?id=${+id}`}>{id}</Link>
         </TD>
         <TD>{title}</TD>
         <TD>{description}</TD>

@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import Form from "../Components/Forms/Form";
 import TopNavbar from "../Components/TopNavbar";
 import { registerUser } from "../Store/Action/auth";
 
 export default function Login() {
+  let history = useHistory();
   const dispatch = useDispatch();
   return (
     <div>
@@ -14,7 +15,7 @@ export default function Login() {
         title="Login"
         onSubmit={(val) => {
           dispatch(registerUser(val));
-          <Redirect to="/dashboard" />;
+          history.push("/dashboard");
         }}
       />
     </div>

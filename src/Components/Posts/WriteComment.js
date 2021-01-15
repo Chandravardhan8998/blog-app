@@ -40,7 +40,7 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
       style={{
         display: "flex",
         height: "30vh",
-         flexDirection: "row-reverse",
+        flexDirection: "row-reverse",
         justifyContent: "space-around",
         alignItems: "flex-start",
       }}

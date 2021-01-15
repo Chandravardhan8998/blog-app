@@ -10,7 +10,16 @@ export default function Dashboard() {
   return (
     <div>
       <TopNavbar />
-      <h1>Dashboard</h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          marginTop: 10,
+        }}
+      >
+        <h3>Dashboard</h3>
+        <button className="btn btn-primary m-1">Create Post</button>
+      </div>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div style={{ flex: 1, margin: 10 }}>
           <Posts title="My Posts" userId={userId} />
@@ -22,4 +31,3 @@ export default function Dashboard() {
     </div>
   );
 }
-

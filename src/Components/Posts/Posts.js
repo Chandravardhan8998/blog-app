@@ -15,12 +15,14 @@ export default function Posts({ userId = null, title = "Posts" }) {
 
   useEffect(() => {
     const fun = async () => {
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const posts = await res.json();
       if (!!userId) {
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-        const posts = await res.json();
-        // console.log(userId);
+        console.log(userId);
         let post = posts.filter((p) => p.userId === +userId);
         setPosts(post);
+      } else {
+        setPosts(posts);
       }
       setLoading(false);
     };

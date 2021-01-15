@@ -41,7 +41,7 @@ export default function Comments({ title = "Comments" }) {
     <div className="m-4">
       <h1>{title}</h1>
       <div>
-        <table>
+        <table className="table">
           <CommentsHeader />
           <tbody>
             {currentPosts.map(({ body, email, name, postId, id }) => {

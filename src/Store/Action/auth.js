@@ -14,7 +14,7 @@ export const registerUser = ({ email }) => {
     const id = Math.floor(Math.random() * 10) + 1;
     saveToLocal(email, id);
     console.log(email, id);
-    window.location.href = "/dashboard";
+    // window.location.href = "/dashboard";
     return dispatch({ type: REGISTER, email, userId: id });
   };
 };
@@ -23,7 +23,7 @@ export const logInUser = ({ email }) => {
   return (dispatch) => {
     const id = Math.floor(Math.random() * 10) + 1;
     saveToLocal(email, id);
-    window.location.href = "/dashboard";
+    // window.location.href = "/dashboard";
     return dispatch({ type: REGISTER, email, userId: id });
   };
 };

@@ -13,7 +13,7 @@ export const ThePagination = ({
   }
   return (
     <nav>
-      <div>
+      <div className="pagination">
         <button
           className="btn btn-primary m-1"
           onClick={() => {
@@ -31,17 +31,10 @@ export const ThePagination = ({
           -3
         </button>
       </div>
-      <ul
-        style={{
-          display: "inline",
-        }}
-      >
+      <ul className="pagination">
         {pageNumbers.map((num) => (
-          <li key={num} style={{ display: "inline" }}>
-            <button
-              className="btn btn-primary m-1"
-              onClick={() => paginate(num)}
-            >
+          <li className="page-item" key={num}>
+            <button className="page-link" onClick={() => paginate(num)}>
               {num}
             </button>
           </li>

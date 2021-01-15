@@ -40,59 +40,63 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
       style={{
         display: "flex",
         height: "30vh",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "flex-start",
       }}
       className="p-5"
     >
-      {!!Comments.length && (
-        <table>
-          <CommentsHeader />
-          {Comments.map((c) => (
-            <Comment
-              body={c.body}
-              email={c.email}
-              id={c.id}
-              name={c.name}
-              onDelete={() =>
-                setComments(Comments.filter((cm) => cm.id !== c.id))
-              }
-              postId={c.postId}
-            />
-          ))}
-        </table>
-      )}
+      <div style={{ flex: 3, margin: 10 }}>
+        {!!Comments.length && (
+          <table>
+            <CommentsHeader />
+            {Comments.map((c) => (
+              <Comment
+                body={c.body}
+                email={c.email}
+                id={c.id}
+                name={c.name}
+                onDelete={() =>
+                  setComments(Comments.filter((cm) => cm.id !== c.id))
+                }
+                postId={c.postId}
+              />
+            ))}
+          </table>
+        )}
+      </div>
 
-      <form className="shadow p-2 m-3 mb-5" onSubmit={onSubmitHandler}>
-        <label>Write Comment</label>
-        <FormGroup title="Title">
-          <input
-            type="text"
-            onChange={(e) => setCurrentName(e.target.value)}
-            placeholder="Title"
-            value={CurrentName}
-          />
-        </FormGroup>
-        <FormGroup title="Body">
-          <input
-            placeholder="Body"
-            type="text"
-            onChange={(e) => setCurrentBody(e.target.value)}
-            value={CurrentBody}
-          />
-        </FormGroup>
-        <FormGroup>
-          <button className="btn btn-primary m-1" onClick={oneMoreHandler}>
-            One More
-          </button>
-          <input
-            className="btn btn-success m-1"
-            value="Comment"
-            type="submit"
-          />
-        </FormGroup>
-      </form>
+      <div style={{ flex: 1, margin: 10 }}>
+        <form className="shadow p-2 mb-5" onSubmit={onSubmitHandler}>
+          <label>Write Comment</label>
+          <FormGroup title="Title">
+            <input
+              type="text"
+              onChange={(e) => setCurrentName(e.target.value)}
+              placeholder="Title"
+              value={CurrentName}
+            />
+          </FormGroup>
+          <FormGroup title="Body">
+            <input
+              placeholder="Body"
+              type="text"
+              onChange={(e) => setCurrentBody(e.target.value)}
+              value={CurrentBody}
+            />
+          </FormGroup>
+          <FormGroup>
+            <button className="btn btn-primary m-1" onClick={oneMoreHandler}>
+              One More
+            </button>
+            <input
+              className="btn btn-success m-1"
+              value="Comment"
+              type="submit"
+            />
+          </FormGroup>
+        </form>
+      </div>
     </div>
   );
 }

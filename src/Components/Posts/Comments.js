@@ -38,7 +38,7 @@ export default function Comments({ title = "Comments" }) {
     );
   }
   return (
-    <div>
+    <div className="m-4">
       <h1>{title}</h1>
       <div>
         <table>

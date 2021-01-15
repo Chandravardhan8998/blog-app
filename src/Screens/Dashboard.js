@@ -12,13 +12,14 @@ export default function Dashboard() {
       <TopNavbar />
       <h1>Dashboard</h1>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, margin: 10 }}>
           <Posts title="My Posts" userId={userId} />
         </div>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, margin: 10 }}>
           <Comments title="Comments On Your Posts" />
         </div>
       </div>
     </div>
   );
 }
+

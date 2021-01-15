@@ -44,6 +44,7 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
         justifyContent: "space-between",
         alignItems: "center",
       }}
+      className="p-5"
     >
       {!!Comments.length && (
         <table>
@@ -64,6 +65,7 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
       )}
 
       <form className="shadow p-2 m-3 mb-5" onSubmit={onSubmitHandler}>
+        <label>Write Comment</label>
         <FormGroup title="Title">
           <input
             type="text"

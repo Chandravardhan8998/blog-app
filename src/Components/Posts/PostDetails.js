@@ -28,9 +28,11 @@ export default function PostDetails({ id }) {
   const currentComments = Comments.slice(firstPost, indexOfLastPost);
   return (
     <div>
-      <h1>{Post.title}</h1>
-      <p>{Post.body}</p>
-      <table className="px-2">
+      <div className="card m-2 p-2" style={{ width: "18rem" }}>
+        <h5 className="card-title">{Post.title}</h5>
+        <p className="card-text">{Post.body}</p>
+      </div>
+      <table className="px-2" style={{ margin: 10 }}>
         <CommentsHeader />
         <tbody>
           {currentComments.map(({ body, email, name, postId, id }) => (

@@ -12,8 +12,8 @@ export const ThePagination = ({
     pageNumbers.push(i);
   }
   return (
-    <nav>
-      <div className="pagination">
+    <nav className="pagination m-1">
+      <div>
         <button
           className="btn btn-primary m-1"
           onClick={() => {
@@ -31,7 +31,10 @@ export const ThePagination = ({
           -3
         </button>
       </div>
-      <ul className="pagination">
+      <ul
+        className="pagination"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
         {pageNumbers.map((num) => (
           <li className="page-item" key={num}>
             <button className="page-link" onClick={() => paginate(num)}>

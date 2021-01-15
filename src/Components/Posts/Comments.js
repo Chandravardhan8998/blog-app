@@ -5,14 +5,14 @@ import CommentsHeader from "./CommentsHeader";
 import { ThePagination } from "./ThePagination";
 
 export default function Comments({ title = "Comments" }) {
-  const [Posts, setPosts] = useState([]);
+  const [Comments, setComments] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
 
   const indexOfLastPost = currentPage * postPerPage;
   const firstPost = indexOfLastPost - postPerPage;
-  const currentPosts = Posts.slice(firstPost, indexOfLastPost);
+  const currentPosts = Comments.slice(firstPost, indexOfLastPost);
 
   const { posts } = useSelector((state) => state.posts);
   const { userId } = useSelector((state) => state.auth);
@@ -25,7 +25,7 @@ export default function Comments({ title = "Comments" }) {
       myPosts = myPosts.map((p) => p.id);
 
       let myComments = comment.filter((c) => myPosts.includes(c.postId));
-      setPosts(myComments);
+      setComments(myComments);
       setLoading(false);
     };
     fun();
@@ -54,8 +54,8 @@ export default function Comments({ title = "Comments" }) {
                   key={id}
                   id={id}
                   onDelete={() => {
-                    setPosts(() =>
-                      Posts.filter((p) => {
+                    setComments(() =>
+                      Comments.filter((p) => {
                         return p.id !== id;
                       })
                     );
@@ -69,7 +69,7 @@ export default function Comments({ title = "Comments" }) {
       </div>
       <ThePagination
         postPerPage={postPerPage}
-        totalPosts={Posts.length}
+        totalPosts={Comments.length}
         paginate={(num) => {
           setCurrentPage(num);
         }}

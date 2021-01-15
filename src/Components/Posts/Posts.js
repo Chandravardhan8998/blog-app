@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Post from "./Post";
 import PostHeader from "./PostHeader";
 import { ThePagination } from "./ThePagination";
 
 export default function Posts({ userId = null, title = "Posts" }) {
-  const [Posts, setPosts] = useState(useSelector((state) => state.posts.posts));
+  const [Posts, setPosts] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
@@ -17,8 +16,10 @@ export default function Posts({ userId = null, title = "Posts" }) {
   useEffect(() => {
     const fun = async () => {
       if (!!userId) {
-        console.log(userId);
-        let post = Posts.filter((p) => p.userId === +userId);
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const posts = await res.json();
+        // console.log(userId);
+        let post = posts.filter((p) => p.userId === +userId);
         setPosts(post);
       }
       setLoading(false);
@@ -35,7 +36,7 @@ export default function Posts({ userId = null, title = "Posts" }) {
   return (
     <div>
       <h1>{title}</h1>
-      <table>
+      <table className="px-2">
         <PostHeader />
         <tbody>
           {currentPosts.map((post) => {

@@ -1,8 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { fetchUser } from "../Store/Action/auth";
-import { fetchComment, fetchPosts } from "../Store/Action/posts";
 import { isAuthenticated } from "../utility";
 
 export default function TopNavbar() {
@@ -10,10 +7,6 @@ export default function TopNavbar() {
   useEffect(() => {
     setIsAuthentic(isAuthenticated());
   }, []);
-  const dispatch = useDispatch();
-  dispatch(fetchUser());
-  dispatch(fetchPosts());
-  dispatch(fetchComment());
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light nav-fill">
       <Link to="/" className="navbar-brand">

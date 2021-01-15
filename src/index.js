@@ -2,10 +2,24 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import Router from "./Router";
+import authReducer from "./Store/Reducer/auth";
+import postReducer from "./Store/Reducer/posts";
+
+import { Provider } from "react-redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import ReduxThunk from "redux-thunk";
+const rootReducer = combineReducers({
+  auth: authReducer,
+  posts: postReducer,
+});
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+
 ReactDOM.render(
-  <React.StrictMode>
-    <Router />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <Router />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 

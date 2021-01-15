@@ -30,7 +30,7 @@ export default function PostDetails({ id }) {
     <div>
       <h1>{Post.title}</h1>
       <p>{Post.body}</p>
-      <table>
+      <table className="px-2">
         <CommentsHeader />
         <tbody>
           {currentComments.map(({ body, email, name, postId, id }) => (

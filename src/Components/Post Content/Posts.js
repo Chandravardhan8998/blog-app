@@ -24,7 +24,8 @@ export default function Posts({
   const [PostBody] = useState("");
   const indexOfLastPost = currentPage * postPerPage;
   const firstPost = indexOfLastPost - postPerPage;
-  const currentPosts = Posts.slice(firstPost, indexOfLastPost);
+  const CurrentPosts = Posts.slice(firstPost, indexOfLastPost);
+  // const [CurrentPosts, setCurrentPosts] = useState(Posts.slice(firstPost, indexOfLastPost);)
   const posts = useSelector((state) => state.posts.posts);
   useEffect(() => {
     setShowHide(ShowModal);
@@ -50,10 +51,12 @@ export default function Posts({
       <table className={!userId ? "m-3" : ""}>
         <PostHeader />
         <tbody>
-          {currentPosts.map((post) => {
+          {CurrentPosts.map((post) => {
             return (
               <>
                 <Post
+                  // key={post.id}
+                  key={post.id}
                   onEdit={() => {
                     // setPostBody(post.body);
                     // setPostTitle(post.title);
@@ -62,10 +65,9 @@ export default function Posts({
                   description={post.body}
                   id={post.id}
                   title={post.title}
-                  key={post.id}
                   onDelete={() => {
+                    // setCurrentPosts()
                     setPosts(() => Posts.filter((p) => p.id !== post.id));
-                    alert("Deleted Successfully");
                   }}
                 />
               </>

@@ -30,7 +30,7 @@ export default function PostDetails({ id }) {
     });
     setComments(MyComments);
     setLoading(false);
-  }, [dispatch, posts, comments, id]);
+  }, [dispatch, posts]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
   const indexOfLastPost = currentPage * postPerPage;
@@ -44,28 +44,26 @@ export default function PostDetails({ id }) {
       <div className="container-fluid">
         <div className="row no-gutters align-items-center">
           <div className="col-3">
-            {!!Post ? (
-              <TheCard body={Post.body} title={Post.title} />
-            ) : (
-              <Loader />
-            )}
+            {!!Post && <TheCard body={Post.body} title={Post.title} />}
           </div>
           <div className="col-9">
             {!!Comments.length ? (
               <table className="m-2">
                 <CommentsHeader />
                 <tbody>
-                  {currentComments.map(({ body, email, name, postId, id }) => (
+                  {currentComments.map((cc) => (
                     <Comment
-                      body={body}
-                      email={email}
-                      name={name}
-                      postId={postId}
-                      key={id}
-                      id={id}
+                      body={cc.body}
+                      email={cc.email}
+                      name={cc.name}
+                      postId={cc.postId}
+                      key={cc.id}
+                      id={cc.id}
                       onDelete={() => {
-                        setComments(() => Comments.filter((c) => c.id !== id));
-                        alert("Deleted Successfully");
+                        setComments(() =>
+                          Comments.filter((c) => c.id !== cc.id)
+                        );
+                        // alert("Deleted Successfully");
                       }}
                     />
                   ))}
@@ -81,7 +79,9 @@ export default function PostDetails({ id }) {
                 </tbody>
               </table>
             ) : (
-              <Loader />
+              <h1 className="text-center p-1 bg-dark text-light">
+                No Comments To Show
+              </h1>
             )}
           </div>
         </div>

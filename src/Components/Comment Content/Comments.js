@@ -22,14 +22,17 @@ export default function Comments({ title = "Comments" }) {
   const userId = useSelector((state) => state.auth.userId);
   dispatch(fetchComment());
   useEffect(() => {
-    console.log(userId);
-    let postsArray = posts.filter((p) => +p.userId === +userId);
-    postsArray = postsArray.map((p) => p.id);
-    let myCommentsOnly = comments.filter((c) => postsArray.includes(+c.postId));
-    setTheComments(myCommentsOnly);
-    console.log(myCommentsOnly);
-    setLoading(false);
-  }, [dispatch, posts]);
+    if (!TheComments.length) {
+      let postsArray = posts.filter((p) => +p.userId === +userId);
+      postsArray = postsArray.map((p) => p.id);
+      let myCommentsOnly = comments.filter((c) =>
+        postsArray.includes(+c.postId)
+      );
+      setTheComments(myCommentsOnly);
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, posts, comments, userId]);
   if (Loading) {
     return <Loader />;
   }

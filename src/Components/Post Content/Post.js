@@ -13,7 +13,7 @@ export default function Post({ id, title, description, onDelete, onEdit }) {
         </TD>
         <TD>{title}</TD>
         <TD>{description}</TD>
-        <TD>edit</TD>
+        <TD onClick={onEdit}>edit</TD>
         <TD onClick={onDelete}>delete</TD>
         <TD onClick={() => setLiked(!Liked)}>{Liked ? "Unlike" : "Like"}</TD>
       </TR>

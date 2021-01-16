@@ -98,24 +98,5 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
         </div>
       </div>
     </div>
-    // <div
-    //   style={{
-    //     display: "flex",
-    //     height: "20vh",
-    //     flexDirection: "row-reverse",
-    //     justifyContent: "space-around",
-    //     alignItems: "flex-start",
-    //   }}
-    //   className="p-1"
-    // >
-
-    //   <div style={{ flex: 3, margin: 10 }}>
-
-    //   </div>
-
-    //   {/* <div style={{ flex: 1, margin: 10 }}> */}
-
-    //   {/* </div> */}
-    // </div>
   );
 }

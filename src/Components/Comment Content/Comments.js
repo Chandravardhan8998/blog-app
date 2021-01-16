@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Comment from "./Comment";
 import CommentsHeader from "../Table Content/CommentsHeader";
 import { ThePagination } from "../Table Content/ThePagination";
 import Title from "../UI/Title";
+import { cvs_fetch } from "../../utility";
+import { fetchUser } from "../../Store/Action/auth";
+import { fetchComment } from "../../Store/Action/posts";
+import Loader from "../UI/Loader";
 
 export default function Comments({ title = "Comments" }) {
   const { userId } = useSelector((state) => state.auth);
-  // const { posts } = useSelector((state) => state.posts);
-  const getPosts = async () => {
-    let posts = await fetch("https://jsonplaceholder.typicode.com/posts");
-    posts = await posts.json();
-    let myPosts = posts.filter((p) => p.userId === +userId);
-    return myPosts.map((p) => p.id);
-  };
-  const getMyComments = async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/comments");
-    const comments = await res.json();
-    let postsArray = await getPosts();
-    let myCommentsOnly = comments.filter((c) => postsArray.includes(c.postId));
-    return myCommentsOnly;
-  };
+  const dispatch = useDispatch();
   const [TheComments, setTheComments] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,20 +20,17 @@ export default function Comments({ title = "Comments" }) {
   const indexOfLastPost = currentPage * postPerPage;
   const firstPost = indexOfLastPost - postPerPage;
   const currentPosts = TheComments.slice(firstPost, indexOfLastPost);
-
+  const posts = useSelector((state) => state.posts.posts);
+  const comments = useSelector((state) => state.posts.comments);
+  dispatch(fetchComment());
   useEffect(() => {
-    getMyComments().then((res) => {
-      setTheComments(res);
-      setLoading(false);
-    });
-  }, []);
+    let postsArray = posts.map((p) => p.id);
+    let myCommentsOnly = comments.filter((c) => postsArray.includes(c.postId));
+    setTheComments(myCommentsOnly);
+    setLoading(false);
+  }, [dispatch, posts, comments]);
   if (Loading) {
-    console.log("loading");
-    return (
-      <div>
-        <h1>Loading</h1>
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div>

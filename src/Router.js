@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Home from "./Screens/Home";
 import Login from "./Screens/Login";
 import Register from "./Screens/Register";
@@ -7,13 +7,12 @@ import { isAuthenticated } from "./utility";
 import Dashboard from "./Screens/Dashboard";
 import PostsPage from "./Screens/PostsPage";
 import { fetchUser } from "./Store/Action/auth";
-import { fetchComment, fetchPosts } from "./Store/Action/posts";
+import { fetchPosts } from "./Store/Action/posts";
 import { useDispatch } from "react-redux";
 export default function Router() {
   const dispatch = useDispatch();
   dispatch(fetchUser());
   dispatch(fetchPosts());
-  dispatch(fetchComment());
   const [IsAuth, setIsAuth] = useState(false);
 
   useEffect(() => {

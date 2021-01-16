@@ -17,3 +17,9 @@ export const isAuthenticated = () => {
 
 export const getRandomBetween = (f, t) =>
   Math.floor(Math.random() * (t - f) + f);
+
+export const cvs_fetch = async (url) => {
+  let data = await fetch(url);
+  data = await data.json();
+  return data;
+};

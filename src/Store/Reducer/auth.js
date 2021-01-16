@@ -1,5 +1,5 @@
 import { isAuthenticated } from "../../utility";
-import { FETCH_USER, LOGIN, REGISTER } from "../Action/auth";
+import { FETCH_USER, LOGIN, LOGOUT, REGISTER } from "../Action/auth";
 
 const initialState = {
   userId: null,
@@ -21,6 +21,8 @@ export default (state = initialState, action) => {
         email: action.email,
         isAuth: !!action.userId,
       };
+    case LOGOUT:
+      return initialState;
     case FETCH_USER:
       console.log("here in store", action);
       return {

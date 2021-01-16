@@ -2,6 +2,7 @@ import { isAuthenticated } from "../../utility";
 
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 export const FETCH_USER = "FETCH_USER";
 
 const saveToLocal = (email, id) => {
@@ -37,5 +38,11 @@ export const fetchUser = () => {
     } else {
       return dispatch({ type: FETCH_USER, userId: null, email: null });
     }
+  };
+};
+
+export const logout = () => {
+  return {
+    type: LOGOUT,
   };
 };

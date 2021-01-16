@@ -3,6 +3,8 @@ import Post from "./Post";
 import PostHeader from "../Table Content/PostHeader";
 import { ThePagination } from "../Table Content/ThePagination";
 import Title from "../UI/Title";
+import { useSelector } from "react-redux";
+import Loader from "../UI/Loader";
 
 export default function Posts({ userId = null, title = "Posts" }) {
   const [Posts, setPosts] = useState([]);
@@ -13,28 +15,24 @@ export default function Posts({ userId = null, title = "Posts" }) {
   const indexOfLastPost = currentPage * postPerPage;
   const firstPost = indexOfLastPost - postPerPage;
   const currentPosts = Posts.slice(firstPost, indexOfLastPost);
-
+  const posts = useSelector((state) => state.posts.posts);
   useEffect(() => {
+    setLoading(true);
     const fun = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const posts = await res.json();
       if (!!userId) {
         console.log(userId);
         let post = posts.filter((p) => p.userId === +userId);
         setPosts(post);
+        setLoading(false);
       } else {
         setPosts(posts);
+        setLoading(false);
       }
-      setLoading(false);
     };
     fun();
-  }, []);
+  }, [posts]);
   if (Loading) {
-    return (
-      <div>
-        <h1>Loading</h1>
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div>

@@ -1,8 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { logout } from "../Store/Action/auth";
 import { isAuthenticated } from "../utility";
 
 export default function TopNavbar() {
+  const dispatch = useDispatch();
   const [IsAuthentic, setIsAuthentic] = useState(false);
   useEffect(() => {
     setIsAuthentic(isAuthenticated());
@@ -29,6 +32,7 @@ export default function TopNavbar() {
           <button
             onClick={() => {
               localStorage.clear();
+              dispatch(logout());
               window.location.href = "/";
             }}
             className="btn btn-danger mx-3"

@@ -8,7 +8,7 @@ export default function TopNavbar() {
     setIsAuthentic(isAuthenticated());
   }, []);
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light nav-fill">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark nav-fill shadow">
       <Link to="/" className="navbar-brand">
         <b>Home</b>
       </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import Form from "../Components/Forms/Form";
 import TopNavbar from "../Components/TopNavbar";
 import { registerUser } from "../Store/Action/auth";

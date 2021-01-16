@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PostDetails from "../Components/Posts/PostDetails";
+import PostDetails from "../Components/Post Content/PostDetails";
 import TopNavbar from "../Components/TopNavbar";
 
 export default function PostsPage() {

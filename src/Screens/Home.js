@@ -1,5 +1,5 @@
 import React from "react";
-import Posts from "../Components/Posts/Posts";
+import Posts from "../Components/Post Content/Posts";
 import TopNavbar from "../Components/TopNavbar";
 
 export default function Home({ isAuth }) {

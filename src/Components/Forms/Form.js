@@ -24,6 +24,7 @@ export default function Form({ onSubmit, title, userType }) {
         </h3>
         <FormGroup title="Email">
           <input
+            id="Email"
             type="email"
             minLength={8}
             maxLength={32}
@@ -33,11 +34,14 @@ export default function Form({ onSubmit, title, userType }) {
             }}
             placeholder="Email"
             required
+            className="form-control"
           />
         </FormGroup>
 
         <FormGroup title="Password">
           <input
+            className="form-control"
+            id="Password"
             required
             min={6}
             max={32}

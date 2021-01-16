@@ -55,7 +55,6 @@ export default function Posts({
             return (
               <>
                 <Post
-                  // key={post.id}
                   key={post.id}
                   onEdit={() => {
                     // setPostBody(post.body);

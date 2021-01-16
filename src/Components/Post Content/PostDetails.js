@@ -30,6 +30,7 @@ export default function PostDetails({ id }) {
     });
     setComments(MyComments);
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, posts]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);

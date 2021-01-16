@@ -5,7 +5,7 @@ import CommentsHeader from "../Table Content/CommentsHeader";
 import { ThePagination } from "../Table Content/ThePagination";
 import WriteComment from "../Comment Content/WriteComment";
 import TheCard from "../UI/TheCard";
-import { fetchComment, fetchPosts } from "../../Store/Action/posts";
+import { fetchComment } from "../../Store/Action/posts";
 import { fetchUser } from "../../Store/Action/auth";
 import Loader from "../UI/Loader";
 
@@ -30,14 +30,14 @@ export default function PostDetails({ id }) {
     });
     setComments(MyComments);
     setLoading(false);
-  }, [dispatch, posts, comments]);
+  }, [dispatch, posts, comments, id]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
   const indexOfLastPost = currentPage * postPerPage;
   const firstPost = indexOfLastPost - postPerPage;
   const currentComments = Comments.slice(firstPost, indexOfLastPost);
   if (Loading) {
-    return <h1>Loading</h1>;
+    return <Loader />;
   }
   return (
     <div>
@@ -90,7 +90,10 @@ export default function PostDetails({ id }) {
         postId={id}
         onCommentsSubmit={(newComments) => {
           let oldComments = Comments;
-          setComments(oldComments.concat(newComments));
+          console.log(oldComments);
+          let newComments2 = oldComments.concat(newComments);
+          console.log(newComments2);
+          setComments(newComments2);
         }}
       />
     </div>

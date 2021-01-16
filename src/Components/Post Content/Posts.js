@@ -15,13 +15,13 @@ export default function Posts({
   title = "Posts",
 }) {
   const [ShowHide, setShowHide] = useState(false);
-  const [ShowHide2, setShowHide2] = useState(false);
+  // const [ShowHide2, setShowHide2] = useState(false);
   const [Posts, setPosts] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
-  const [PostTitle, setPostTitle] = useState("");
-  const [PostBody, setPostBody] = useState("");
+  const [PostTitle] = useState("");
+  const [PostBody] = useState("");
   const indexOfLastPost = currentPage * postPerPage;
   const firstPost = indexOfLastPost - postPerPage;
   const currentPosts = Posts.slice(firstPost, indexOfLastPost);
@@ -40,7 +40,7 @@ export default function Posts({
       }
     };
     fun();
-  }, [posts, ShowHide, ShowModal]);
+  }, [posts, ShowHide, ShowModal, userId]);
   if (Loading) {
     return <Loader />;
   }
@@ -55,9 +55,9 @@ export default function Posts({
               <>
                 <Post
                   onEdit={() => {
-                    setPostBody(post.body);
-                    setPostTitle(post.title);
-                    setShowHide2(true);
+                    // setPostBody(post.body);
+                    // setPostTitle(post.title);
+                    // setShowHide2(true);
                   }}
                   description={post.body}
                   id={post.id}
@@ -67,33 +67,6 @@ export default function Posts({
                     setPosts(() => Posts.filter((p) => p.id !== post.id));
                     alert("Deleted Successfully");
                   }}
-                />
-                <TheModal
-                  ShowHide={ShowHide2}
-                  onCloseModal={() => setShowHide2(false)}
-                  userId={userId}
-                  onSubmit={(e, res) => {
-                    e.preventDefault();
-                    let NewPosts = Posts;
-                    console.log("OLD", NewPosts);
-                    NewPosts.push({
-                      title: res.title,
-                      body: res.body,
-                      id: res.id,
-                      userId: res.userId,
-                    });
-                    console.log("NEW", {
-                      title: res.title,
-                      body: res.body,
-                      id: res.id,
-                      userId: res.userId,
-                    });
-                    setPosts(NewPosts);
-                    // onCloseModal();
-                    setShowHide2(false);
-                  }}
-                  body={post.body}
-                  title={post.title}
                 />
               </>
             );

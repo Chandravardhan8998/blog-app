@@ -1,4 +1,4 @@
-import { isAuthenticated } from "../../utility";
+/* eslint-disable import/no-anonymous-default-export */
 import { FETCH_USER, LOGIN, LOGOUT, REGISTER } from "../Action/auth";
 
 const initialState = {

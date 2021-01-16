@@ -4,13 +4,10 @@ import Comment from "./Comment";
 import CommentsHeader from "../Table Content/CommentsHeader";
 import { ThePagination } from "../Table Content/ThePagination";
 import Title from "../UI/Title";
-import { cvs_fetch } from "../../utility";
-import { fetchUser } from "../../Store/Action/auth";
 import { fetchComment } from "../../Store/Action/posts";
 import Loader from "../UI/Loader";
 
 export default function Comments({ title = "Comments" }) {
-  const { userId } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [TheComments, setTheComments] = useState([]);
   const [Loading, setLoading] = useState(true);

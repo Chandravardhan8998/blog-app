@@ -16,9 +16,13 @@ export default function Form({ onSubmit, title, userType }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        height: "80vh",
       }}
     >
-      <form className="shadow p-3" onSubmit={(e) => onSubmitHandler(e)}>
+      <form
+        className="shadow p-4 bg-dark text-light rounded"
+        onSubmit={(e) => onSubmitHandler(e)}
+      >
         <h3 className="py-3" style={{ textAlign: "center" }}>
           {title}
         </h3>
@@ -53,7 +57,13 @@ export default function Form({ onSubmit, title, userType }) {
             placeholder="Password"
           />
         </FormGroup>
-        <input className="btn btn-primary p-2" type="submit" value="Submit" />
+        <FormGroup>
+          <input
+            className="btn btn-primary p-2 my-2 btn-block form-control"
+            type="submit"
+            value="Submit"
+          />
+        </FormGroup>
       </form>
     </div>
   );

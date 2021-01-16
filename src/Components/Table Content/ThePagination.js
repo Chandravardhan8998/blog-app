@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PaginationButtons from "./PaginationButtons";
 
 export const ThePagination = ({
   postPerPage,
@@ -35,11 +36,11 @@ export const ThePagination = ({
         <div className="col-8">
           <ul className="pagination p-3 m-1 ">
             {pageNumbers.map((num) => (
-              <li className="page-item" key={num}>
-                <button className="page-link" onClick={() => paginate(num)}>
-                  {num}
-                </button>
-              </li>
+              <PaginationButtons
+                num={num}
+                onClick={() => paginate(num)}
+                key={num}
+              />
             ))}
           </ul>
         </div>

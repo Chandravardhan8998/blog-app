@@ -17,6 +17,7 @@ export default function PostDetails({ id }) {
         return p.id === +id;
       });
     setPost(MyPost[0]);
+    console.log(MyPost[0]);
     const MyComments = comments.filter((c) => {
       return c.postId === +id;
     });
@@ -66,7 +67,6 @@ export default function PostDetails({ id }) {
           </div>
         </div>
       </div>
-
       <WriteComment
         postId={id}
         onCommentsSubmit={(newComments) => {

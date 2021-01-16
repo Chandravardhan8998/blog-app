@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
 import Home from "./Screens/Home";
 import Login from "./Screens/Login";
 import Register from "./Screens/Register";
@@ -27,25 +27,54 @@ export default function Router() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact render={() => <Home isAuth={IsAuth} />} />
+
         <Route
           path="/register"
-          exact
-          render={() => (!IsAuth ? <Register /> : <Redirect to="/" />)}
+          render={() =>
+            !IsAuth ? (
+              <Register />
+            ) : (
+              <h1>
+                <Link to="/dashboard"> Access Denied </Link>
+              </h1>
+            )
+          }
         />
         <Route
           path="/login"
-          exact
-          render={() => (!IsAuth ? <Login /> : <Redirect to="/" />)}
+          render={() =>
+            !IsAuth ? (
+              <Login />
+            ) : (
+              <h1>
+                <Link to="/dashboard"> Access Denied </Link>
+              </h1>
+            )
+          }
         />
         <Route
           path="/dashboard"
-          exact
-          render={() => (IsAuth ? <Dashboard /> : <Redirect to="/login" />)}
+          render={() =>
+            IsAuth ? (
+              <Dashboard />
+            ) : (
+              <h1>
+                <Link to="/login"> Access Denied Login First </Link>
+              </h1>
+            )
+          }
         />
         <Route
           path="/post"
-          exact
-          render={() => (IsAuth ? <PostsPage /> : <Redirect to="/login" />)}
+          render={() =>
+            IsAuth ? (
+              <PostsPage />
+            ) : (
+              <h1>
+                <Link to="/login"> Access Denied Login First </Link>
+              </h1>
+            )
+          }
         />
       </Switch>
     </BrowserRouter>

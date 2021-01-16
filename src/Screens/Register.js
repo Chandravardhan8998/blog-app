@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import Form from "../Components/Forms/Form";
@@ -9,15 +9,14 @@ export default function Register() {
   let history = useHistory();
   const dispatch = useDispatch();
   return (
-    <div>
-      <TopNavbar isAuth={false} />
+    <Fragment>
+      <TopNavbar />
       <Form
         title="Register"
         onSubmit={(val) => {
           dispatch(registerUser(val));
-          history.push("/dashboard");
         }}
       />
-    </div>
+    </Fragment>
   );
 }

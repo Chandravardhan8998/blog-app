@@ -6,32 +6,38 @@ import { ThePagination } from "../Table Content/ThePagination";
 import Title from "../UI/Title";
 
 export default function Comments({ title = "Comments" }) {
-  const [Comments, setComments] = useState([]);
+  const { userId } = useSelector((state) => state.auth);
+  // const { posts } = useSelector((state) => state.posts);
+  const getPosts = async () => {
+    let posts = await fetch("https://jsonplaceholder.typicode.com/posts");
+    posts = await posts.json();
+    let myPosts = posts.filter((p) => p.userId === +userId);
+    return myPosts.map((p) => p.id);
+  };
+  const getMyComments = async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/comments");
+    const comments = await res.json();
+    let postsArray = await getPosts();
+    let myCommentsOnly = comments.filter((c) => postsArray.includes(c.postId));
+    return myCommentsOnly;
+  };
+  const [TheComments, setTheComments] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(5);
 
   const indexOfLastPost = currentPage * postPerPage;
   const firstPost = indexOfLastPost - postPerPage;
-  const currentPosts = Comments.slice(firstPost, indexOfLastPost);
+  const currentPosts = TheComments.slice(firstPost, indexOfLastPost);
 
-  const { posts } = useSelector((state) => state.posts);
-  const { userId } = useSelector((state) => state.auth);
   useEffect(() => {
-    const fun = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/comments");
-      const comment = await res.json();
-
-      let myPosts = posts.filter((p) => p.userId === +userId);
-      myPosts = myPosts.map((p) => p.id);
-
-      let myComments = comment.filter((c) => myPosts.includes(c.postId));
-      setComments(myComments);
+    getMyComments().then((res) => {
+      setTheComments(res);
       setLoading(false);
-    };
-    fun();
+    });
   }, []);
   if (Loading) {
+    console.log("loading");
     return (
       <div>
         <h1>Loading</h1>
@@ -55,8 +61,8 @@ export default function Comments({ title = "Comments" }) {
                   key={id}
                   id={id}
                   onDelete={() => {
-                    setComments(() =>
-                      Comments.filter((p) => {
+                    setTheComments(() =>
+                      TheComments.filter((p) => {
                         return p.id !== id;
                       })
                     );
@@ -70,7 +76,7 @@ export default function Comments({ title = "Comments" }) {
       </div>
       <ThePagination
         postPerPage={postPerPage}
-        totalPosts={Comments.length}
+        totalPosts={TheComments.length}
         paginate={(num) => {
           setCurrentPage(num);
         }}

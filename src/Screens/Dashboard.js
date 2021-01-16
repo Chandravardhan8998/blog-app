@@ -7,7 +7,6 @@ import Title from "../Components/UI/Title";
 
 export default function Dashboard() {
   const userId = useSelector((state) => state.auth.userId);
-  console.log(userId);
   return (
     <div>
       <TopNavbar />
@@ -24,12 +23,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      {/* <div style={{ display: "flex", flexDirection: "row" }}>
-        <div style={{ flex: 1, margin: 4 }}>
-        </div>
-        <div style={{ flex: 1, margin: 4 }}>
-        </div>
-      </div> */}
     </div>
   );
 }

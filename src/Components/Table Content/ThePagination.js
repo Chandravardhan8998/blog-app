@@ -13,11 +13,11 @@ export const ThePagination = ({
     pageNumbers.push(i);
   }
   return (
-    <div className="container">
-      <div className="row">
+    <div className="container-fluid m-1">
+      <div className="row justify-content-center align-items-center  ">
         <div className="col-4">
           <button
-            className="btn btn-primary m-1"
+            className="btn btn-success m-1"
             onClick={() => {
               increasePosts(3);
             }}
@@ -25,7 +25,7 @@ export const ThePagination = ({
             +3
           </button>
           <button
-            className="btn btn-primary m-1"
+            className="btn btn-danger m-1"
             onClick={() => {
               decreasePosts(3);
             }}
@@ -34,7 +34,7 @@ export const ThePagination = ({
           </button>
         </div>
         <div className="col-8">
-          <ul className="pagination p-3 m-1 ">
+          <ul className="pagination m-1 ">
             {pageNumbers.map((num) => (
               <PaginationButtons
                 num={num}

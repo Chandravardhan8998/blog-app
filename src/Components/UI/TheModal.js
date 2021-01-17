@@ -56,10 +56,10 @@ export default function TheModal({
               onChange={(e) => setPostBody(e.target.value)}
             />
           </FormGroupe>
-          <FormGroupe title="Body">
+          <FormGroupe>
             <input
               required
-              className="btn btn-primary btn-block"
+              className="btn btn-success btn-block"
               type="submit"
               value="Post"
             />

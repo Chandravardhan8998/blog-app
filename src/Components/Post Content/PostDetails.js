@@ -47,8 +47,8 @@ export default function PostDetails({ id }) {
           <div className="col-3">
             {!!Post && <TheCard body={Post.body} title={Post.title} />}
           </div>
-          <div className="col-9">
-            {!!Comments.length ? (
+          {!!Comments.length ? (
+            <div className="col-9">
               <table className="m-2">
                 <CommentsHeader />
                 <tbody>
@@ -68,23 +68,25 @@ export default function PostDetails({ id }) {
                       }}
                     />
                   ))}
-                  <ThePagination
-                    postPerPage={postPerPage}
-                    totalPosts={Comments.length}
-                    paginate={(num) => {
-                      setCurrentPage(num);
-                    }}
-                    increasePosts={(inc) => setPostPerPage(postPerPage + +inc)}
-                    decreasePosts={(dec) => setPostPerPage(postPerPage - +dec)}
-                  />
                 </tbody>
               </table>
-            ) : (
-              <h1 className="text-center p-1 bg-dark text-light">
+              <ThePagination
+                postPerPage={postPerPage}
+                totalPosts={Comments.length}
+                paginate={(num) => {
+                  setCurrentPage(num);
+                }}
+                increasePosts={(inc) => setPostPerPage(postPerPage + +inc)}
+                decreasePosts={(dec) => setPostPerPage(postPerPage - +dec)}
+              />
+            </div>
+          ) : (
+            <div className="col-9">
+              <h1 className="text-center p-1 bg-info text-light">
                 No Comments To Show
               </h1>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       <WriteComment

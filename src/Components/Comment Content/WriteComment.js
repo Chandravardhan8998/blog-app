@@ -14,8 +14,26 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    onCommentsSubmit(Comments);
-    setComments([]);
+    if (!!Comments.length) {
+      onCommentsSubmit(Comments);
+      setComments([]);
+    } else {
+      if (!!CurrentName && !!CurrentBody) {
+        onCommentsSubmit([
+          {
+            postId,
+            id: getRandomBetween(501, 1000),
+            name: CurrentName,
+            body: CurrentBody,
+            email: Email,
+          },
+        ]);
+        setCurrentBody("");
+        setCurrentName("");
+      } else {
+        alert("add some comments");
+      }
+    }
   };
   const oneMoreHandler = (e) => {
     e.preventDefault();
@@ -37,10 +55,13 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
     setCurrentName("");
   };
   return (
-    <div className="container-fluid">
+    <div className="container-fluid m-4">
       <div className="row">
         <div className="col-5">
-          <form className="shadow p-3 mb-5 mx-3" onSubmit={onSubmitHandler}>
+          <form
+            className="shadow p-3 mx-3 rounded border border-warning"
+            onSubmit={onSubmitHandler}
+          >
             <Title title="Enter Comments" />
             <FormGroup title="Title">
               <input
@@ -64,7 +85,7 @@ export default function WriteComment({ postId, onCommentsSubmit }) {
             </FormGroup>
             <FormGroup>
               <button
-                className="btn btn-primary m-1 btn-block"
+                className="btn btn-secondary m-1 btn-block"
                 onClick={oneMoreHandler}
               >
                 One More +

@@ -17,7 +17,7 @@ export default function Dashboard() {
             console.log("click");
             setShowModal(true);
           }}
-          className="btn btn-primary m-1"
+          className="btn btn-success m-1 shadow"
         >
           Create Post
         </button>
